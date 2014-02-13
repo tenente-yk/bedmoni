@@ -1,0 +1,52 @@
+#ifndef __TRENDSET_H
+#define __TRENDSET_H
+
+#include "inpfoc.h"
+
+enum
+{
+  TRENDSET_NONE = 0,     // 0 - have to be not used
+  TRENDSET_SUITE1_SHOW,  // 1
+  TRENDSET_SUITE1_MIN,   // 2
+  TRENDSET_SUITE1_MAX,   // 3
+  TRENDSET_SUITE1_HR,    // 4
+  TRENDSET_SUITE1_NIBP,  // 5
+  TRENDSET_SUITE1_SPO2,  // 6
+  TRENDSET_SUITE1_PULSE, // 7
+
+  TRENDSET_SUITE2_SHOW,  // 8
+  TRENDSET_SUITE2_MIN,   // 9
+  TRENDSET_SUITE2_MAX,   // 10
+  TRENDSET_SUITE2_STI,   // 11
+  TRENDSET_SUITE2_STII,  // 12
+  TRENDSET_SUITE2_STIII, // 13
+  TRENDSET_SUITE2_STAVR, // 14
+  TRENDSET_SUITE2_STAVL, // 15
+  TRENDSET_SUITE2_STAVF, // 16
+  TRENDSET_SUITE2_STV,   // 17
+
+  TRENDSET_SUITE3_SHOW,  // 18
+  TRENDSET_SUITE3_MIN,   // 19
+  TRENDSET_SUITE3_MAX,   // 20
+  TRENDSET_SUITE3_T1,    // 21
+  TRENDSET_SUITE3_T2,    // 22
+  TRENDSET_SUITE3_DT,    // 23
+
+  TRENDSET_SUITE4_SHOW,  // 24
+  TRENDSET_SUITE4_MIN,   // 25
+  TRENDSET_SUITE4_MAX,   // 26
+  TRENDSET_SUITE4_BR,    // 27
+  TRENDSET_SUITE4_BRC,   // 28
+  TRENDSET_SUITE4_ETCO2, // 29
+  TRENDSET_SUITE4_ICO2,  // 30
+
+  TRENDSET_EXIT,         // 31
+  TRENDSET_NUM_ITEMS,    // 32
+};
+
+extern inpfoc_funclist_t inpfoc_trnset_funclist[TRENDSET_NUM_ITEMS+1];
+extern char menu_trendset[];
+
+void menu_trendset_openproc(void);
+
+#endif // __TRENDSET_H

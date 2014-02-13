@@ -1,0 +1,17 @@
+#include "modules/inpfoc.h"
+#include "modules/ids.h"
+#include "menus/veriftst.h"
+
+<BEGIN>
+
+STATIC IDS_VERIF,10,10,50,30
+
+STATIC IDS_PRESS_START_1, 20, 40, 160, 20
+STATIC IDS_PRESS_START_2, 20, 56, 160, 20
+
+INPFOC IDS_START,INPFOC_VERIF, VERIF_START, 20, 90, 160, 20
+
+INPFOC IDS_QUIT,INPFOC_VERIF, VERIF_EXIT, 20, 120, 160, 20
+
+
+<END>

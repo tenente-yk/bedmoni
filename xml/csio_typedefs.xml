@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<csio_protocol>
+  <version>2</version>
+
+  <enums>
+    <enum name="CSIO_ID" >
+      <description>Messages' ids.</description>
+      <entry name="CSIO_ID_DEBUG" value="0">
+        <description>Debug message</description>
+      </entry>
+      <entry name="CSIO_ID_ECG_C" value="1">
+        <description>ECG channel data</description>
+      </entry>
+      <entry name="CSIO_ID_SPO2_C" value="2">
+        <description>SpO2 channel data</description>
+      </entry>
+      <entry name="CSIO_ID_RESP_C" value="3">
+        <description>Resp channel data</description>
+      </entry>
+      <entry name="CSIO_ID_CO2_C" value="4">
+        <description>CO2 channel data</description>
+      </entry>
+      <entry name="CSIO_ID_ECG_D" value="5">
+        <description>ECG measurements' data</description>
+      </entry>
+      <entry name="CSIO_ID_SPO2_D" value="6">
+        <description>SpO2 measurements' data</description>
+      </entry>
+      <entry name="CSIO_ID_NIBP_D" value="7">
+        <description>NiBP measurements' data</description>
+      </entry>
+      <entry name="CSIO_ID_RESP_D" value="8">
+        <description>Resp measurements' data</description>
+      </entry>
+      <entry name="CSIO_ID_T1T2_D" value="9">
+        <description>Resp measurements' data</description>
+      </entry>
+      <entry name="CSIO_ID_CO2_D" value="10">
+        <description>Resp measurements' data</description>
+      </entry>
+      <entry name="CSIO_ID_ALARMS" value="11">
+        <description>Alarms</description>
+      </entry>
+      <entry name="CSIO_ID_PAT" value="12">
+        <description>Patient's info</description>
+      </entry>
+      <entry name="CSIO_ID_MONICFG" value="13">
+        <description>Monitoring configuration</description>
+      </entry>
+      <entry name="CSIO_ID_RPEAK" value="14">
+        <description>R peak beep message</description>
+      </entry>
+      <entry name="CSIO_ID_ECS" value="15">
+        <description>ECG module settings</description>
+      </entry>
+    </enum>
+  </enums>
+
+  <typedefs>
+    <typedef name="csio_debug_info_t">
+      <description>Debug message</description>
+      <field name="len" type="unsigned char">message length</field>
+      <field name="payload[200]" type="unsigned char">data</field>
+      <field name="unused[3]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_ecgdata_c_t">
+      <description>ECG channel data</description>
+      <field name="sync" type="unsigned char">sync</field>
+      <field name="mode" type="unsigned char">filtration mode</field>
+      <field name="data[3]" type="short">data</field>
+      <field name="pm" type="unsigned char">pacemaker</field>
+      <field name="break_byte" type="unsigned char">break byte</field>
+      <field name="unused[2]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_spo2data_c_t">
+      <description>SpO2 channel data</description>
+      <field name="sync" type="unsigned char">sync</field>
+      <field name="mode" type="unsigned char">scaling mode</field>
+      <field name="fpg" type="short">FPG</field>
+      <field name="unused[4]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_respdata_c_t">
+      <description>Resp channel data</description>
+      <field name="sync" type="unsigned char">sync</field>
+      <field name="lead" type="unsigned char">lead</field>
+      <field name="rpg" type="short">RPG</field>
+      <field name="unused[4]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_co2data_c_t">
+      <description>CO2 channel data</description>
+      <field name="sync" type="unsigned char">sync</field>
+      <field name="data" type="short">CO2 data waveform</field>
+      <field name="unused[5]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_ecgdata_d_t">
+      <description>ECG measurements' data</description>
+      <field name="hr" type="unsigned short">heart rate</field>
+      <field name="hr_min" type="unsigned short">hr lower threshold</field>
+      <field name="hr_max" type="unsigned short">hr upper threshold</field>
+      <field name="st[7]" type="short">st shift</field>
+      <field name="st_min[7]" type="short">st shift lower threshold</field>
+      <field name="st_max[7]" type="short">st shift upper threshold</field>
+      <field name="hr_src" type="unsigned char">heart rate source</field>
+      <field name="j_shift" type="short">J shift</field>
+      <field name="unused[9]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_spo2data_d_t">
+      <description>SpO2 measurements' data</description>
+      <field name="spo2" type="unsigned short">O2 saturation</field>
+      <field name="spo2_min" type="unsigned short">O2 saturation lower threshold</field>
+      <field name="spo2_max" type="unsigned short">O2 saturation upper threshold</field>
+      <field name="hr" type="unsigned short">heart rate</field>
+      <field name="hr_min" type="unsigned short">hr lower threshold</field>
+      <field name="hr_max" type="unsigned short">hr upper threshold</field>
+      <field name="stolb" type="unsigned short">stolbik</field>
+      <field name="unused[6]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_nibpdata_d_t">
+      <description>NiBP measurements' data</description>
+      <field name="sd" type="unsigned short">systolic pressure</field>
+      <field name="sd_min" type="unsigned short">systolic pressure lower threshold</field>
+      <field name="sd_max" type="unsigned short">systolic pressure upper threshold</field>
+      <field name="dd" type="unsigned short">diastolic pressure</field>
+      <field name="dd_min" type="unsigned short">diastolic pressure lower threshold</field>
+      <field name="dd_max" type="unsigned short">diastolic pressure upper threshold</field>
+      <field name="md" type="unsigned short">averaged pressure</field>
+      <field name="md_min" type="unsigned short">averaged pressure lower threshold</field>
+      <field name="md_max" type="unsigned short">averaged pressure upper threshold</field>
+      <field name="infl" type="unsigned short">inflation</field>
+      <field name="meas_interval" type="unsigned short">measurement period</field>
+      <field name="hr" type="unsigned short">heart rate</field>
+      <field name="trts" type="unsigned long">trts_t structure, containing last success. measurement time</field>
+      <field name="unused[4]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_respdata_d_t">
+      <description>Resp measurements' data</description>
+      <field name="br" type="unsigned short">breath rate</field>
+      <field name="br_min" type="unsigned short">breath rate lower threshold</field>
+      <field name="br_max" type="unsigned short">breath rate upper threshold</field>
+      <field name="lead" type="unsigned char">lead</field>
+      <field name="ap" type="unsigned char">apnoe flag</field>
+      <field name="ap_max" type="unsigned short">apnoe threshold</field>
+      <field name="unused[2]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_t1t2data_d_t">
+      <description>Temperature measurements' data</description>
+      <field name="t1" type="unsigned short">T1</field>
+      <field name="t1_min" type="unsigned short">T1 lower threshold</field>
+      <field name="t1_max" type="unsigned short">T1 upper threshold</field>
+      <field name="t2" type="unsigned short">T2</field>
+      <field name="t2_min" type="unsigned short">T2 lower threshold</field>
+      <field name="t2_max" type="unsigned short">T2 upper threshold</field>
+      <field name="dt_max" type="unsigned short">dT upper threshold</field>
+      <field name="unused[2]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_co2data_d_t">
+      <description>CO2 measurements' data</description>
+      <field name="etco2" type="unsigned short">etCO2</field>
+      <field name="etco2_min" type="unsigned short">etCO2 lower threshold</field>
+      <field name="etco2_max" type="unsigned short">etCO2 upper threshold</field>
+      <field name="ico2" type="unsigned short">iCO2</field>
+      <field name="ico2_max" type="unsigned short">iCO2 upper threshold</field>
+      <field name="br" type="unsigned short">breath rate</field>
+      <field name="br_min" type="unsigned short">breath rate lower threshold</field>
+      <field name="br_max" type="unsigned short">breath rate upper threshold</field>
+      <field name="unused[8]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_alarms_t">
+      <description>Alarms</description>
+      <field name="set[16]" type="unsigned char">alarms' state (set/clr), bit located</field>
+      <field name="ena[16]" type="unsigned char">alarms' state (ena/dis sound), bit located</field>
+      <field name="stat[16]" type="unsigned char">alarms' status (event set/clr), bit located</field>
+      <field name="unused[44]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_patient_t">
+      <description>Patient's info</description>
+      <field name="type" type="unsigned char">type (adult - 0, child - 1, neonate - 2)</field>
+      <field name="bedno" type="unsigned long">bed number</field>
+      <field name="cardno" type="unsigned long">card number</field>
+      <field name="w" type="unsigned short">weight</field>
+      <field name="h" type="unsigned char">height</field>
+      <field name="unused[4]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_monicfg_t">
+      <description>Monitoring configuration</description>
+      <field name="unitmask" type="unsigned long">unit mask</field>
+      <field name="powerstat" type="unsigned long">power status</field>
+      <field name="demomask" type="unsigned char">demo mask</field>
+      <field name="unused[3]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_rpeak_t">
+      <description>R peak beep message</description>
+      <field name="id" type="unsigned char">id</field>
+      <field name="hr" type="unsigned short">heart rate</field>
+      <field name="unused[1]" type="unsigned char">reserved</field>
+    </typedef>
+    <typedef name="csio_ecs_t">
+      <description>ECG module settings</description>
+      <field name="id" type="unsigned char">id</field>
+      <field name="payload[5]" type="unsigned char">data</field>
+      <field name="unused[2]" type="unsigned char">reserved</field>
+    </typedef>
+  </typedefs>
+</csio_protocol>

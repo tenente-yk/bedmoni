@@ -1,0 +1,22 @@
+*****************************************************************************************************
+* Dec2013
+- NiBP risk inflation warning not cleared - fixed
+- NEONATE_FEATURE added
+- grph_line_bound added
+- grph_select_pen added
+* 14 Jan 2014
+- signal borders in cframe done
+* 15 Jan 2014
+- makefile modifications for Ubuntu compatibility
+- some warnings removed (caused by -Wunused-result in -WAll for Ubuntu gcc)
+* 21 Jan 2014
+- new style for units alarms (in case of med and high risks)
+- alarm_msg struct and its variable - some data added
+- some warnings removed
+* 22 Jan 2014
+- admin_mode global variable created
+- now spo2 scale displays in spo2 unit
+* 24 Jan 2014
+- admin menu added, and admin_mode variable toggle in admin menu
+- rounded rects for background use in unit alarms
+*****************************************************************************************************

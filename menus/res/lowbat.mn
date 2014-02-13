@@ -1,0 +1,14 @@
+#include "modules/inpfoc.h"
+#include "modules/ids.h"
+#include "menus/lowbatcharge.h"
+
+<BEGIN>
+
+STATIC IDS_ATTENTION,20,10,50,30
+
+STATIC IDS_15_MINS_2_WORK_1,20,40,160,20
+STATIC IDS_15_MINS_2_WORK_2,20,58,160,20
+
+INPFOC IDS_OK,  INPFOC_LOWBAT, LOWBAT_OK, 20, 88, 160, 20
+
+<END>

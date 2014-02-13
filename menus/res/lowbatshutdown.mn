@@ -1,0 +1,11 @@
+#include "modules/ids.h"
+#include "menus/lowbatshutdown.h"
+
+<BEGIN>
+
+STATIC IDS_ALARM_SYS_EXTREMLOWCHARGE,20,10,50,30
+
+STATIC IDS_POWEROFF_MONI,20,40,160,20
+STATIC IDS_IN_60S,20,58,160,20
+
+<END>
