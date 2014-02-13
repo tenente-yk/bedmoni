@@ -264,7 +264,7 @@ int dview_init(void)
   dview_create_root_wnd();
 #endif
 #ifdef UNIX
-  if (fb_open("/dev/fb") < 0)
+  if (fb_open(FB_DEV) < 0)
   {
     error("fb_open failed\n");
     assert(0);

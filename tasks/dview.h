@@ -35,6 +35,12 @@
 #define DVIEW_ARG_DATA_SIZE           400
 #define DVIEW_UPD_MAX_SIZE            20000
 
+#ifdef ARM
+#define  FB_DEV   "/dev/fb"
+#else
+#define  FB_DEV   "/dev/fb0"
+#endif
+
 /*! \enum
  *  \brief Screen frames.
  */

@@ -187,8 +187,8 @@ void mframe_init(void)
   v = alarm_isenabled(SPO2_RISKPULSE) ? IMAGE_BELL : IMAGE_NOBELL;
   unit_item_add(SPO2, UNIT_TYPE_VAL_ICON, UNIT_SPO2_HR_BELL, 137, 40, v, 0);
   unit_item_add(SPO2, UNIT_TYPE_VAL_PROGRESS, UNIT_SPO2_STOLBIK, 228, 20, MAKELONG(10, 50), PBS_VERTICAL, 0);
-  unit_item_add(SPO2, UNIT_TYPE_VAL_TEXT, UNIT_SPO2_SCALE_CAPTION, 173, 52, 17, IDS_NONE, 0);
-  unit_item_add(SPO2, UNIT_TYPE_VAL_INT, UNIT_SPO2_SCALE, 194, 52, 27, 0, (int)UNDEF_VALUE);
+ // unit_item_add(SPO2, UNIT_TYPE_VAL_TEXT, UNIT_SPO2_SCALE_CAPTION, 173, 52, 17, IDS_NONE, 0);
+ // unit_item_add(SPO2, UNIT_TYPE_VAL_INT, UNIT_SPO2_SCALE, 194, 52, 27, 0, (int)UNDEF_VALUE);
   pmframe->punit[SPO2]->visible = 1;
 
   // blood pressure module measurements' data

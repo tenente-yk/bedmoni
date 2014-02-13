@@ -1417,6 +1417,9 @@ void tprn_stepit(void)
   int nr, i;
   tprn_cfg_t tprn_cfg;
   static int cnt = 0;
+#ifdef ARM
+  unsigned char b;
+#endif
 
   // to disable warnings
   cnt = cnt;

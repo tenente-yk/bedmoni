@@ -1111,7 +1111,6 @@ static void unit_draw_text_data(int chno, item_t * pitem, int redraw)
   rc.y0 = y;
   if (pitem->ids)
   {
-    char s[200];
     ids2string(pitem->ids, s);
   }
   else
