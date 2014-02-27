@@ -1,2 +1,9 @@
 obj/
 *.o
+*.men
+*.lang
+./1
+./2
+*.dat
+*.cfg
+*.map

@@ -416,6 +416,7 @@ void unit_alarm_stepit(void)
       if (level > LOW_RISK)
       {
 #if 1
+	unit_set_bckg(chno, risk_color[NO_RISK]);
         color = (toggler & 0x1) ? risk_color[level] : risk_color[NO_RISK];
         for (i=0; i<punit->nitems; i++)
         {

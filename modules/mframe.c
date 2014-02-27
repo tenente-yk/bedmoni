@@ -179,7 +179,7 @@ void mframe_init(void)
   unit_item_add(SPO2, UNIT_TYPE_VAL_INT, UNIT_SPO2_PULSE, 173, 22, 27, 0, (int)UNDEF_VALUE);
   snprintf(s, sizeof(s), "%d..%d", spo2_data.hr_min, spo2_data.hr_max);
   unit_item_add(SPO2, UNIT_TYPE_VAL_TEXT, UNIT_SPO2_PULSE_RANGE, 122, 60, 13, UNIT_TYPE_RANGE, s);
-  unit_item_add(SPO2, UNIT_TYPE_VAL_INT, UNIT_SPO2_SAT, 32, 12, 74, 0, (int)UNDEF_VALUE);
+  unit_item_add(SPO2, UNIT_TYPE_VAL_INT, UNIT_SPO2_SAT, 32, 11, 74, 0, (int)UNDEF_VALUE);
   snprintf(s, sizeof(s), "%d..%d", spo2_data.spo2_min, spo2_data.spo2_max);
   unit_item_add(SPO2, UNIT_TYPE_VAL_TEXT, UNIT_SPO2_SAT_RANGE, 188, 2, 13, UNIT_TYPE_RANGE, s);
   v = alarm_isenabled(SPO2_RISKSAT) ? IMAGE_BELL : IMAGE_NOBELL;
