@@ -240,12 +240,13 @@ void dproc_add_frame(unsigned int id, unsigned int ts, int len, unsigned char *p
       if (memcmp(pp, "ALIVE", 5) != 0)
         info("%s\n", pp);
       sched_start(SCHED_SBDP, 5000, sbdp_reset, SCHED_NORMAL); // 5s
-
+#if 0
       csio_debug_info_t csio_debug_info;
       csio_debug_info.len = len;
       memset(&csio_debug_info, 0, sizeof(csio_debug_info_t));
       memcpy(csio_debug_info.payload, pp, (len<sizeof(csio_debug_info.payload))?len:sizeof(csio_debug_info.payload));
       csio_send_msg(CSIO_ID_DEBUG, &csio_debug_info, sizeof(csio_debug_info_t));
+#endif
       break;
     case PD_ID_ECG:
       ecgm_process_packet(pp, len);

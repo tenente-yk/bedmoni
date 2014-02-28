@@ -80,6 +80,9 @@ lang:
 .PHONY: lang
 
 install:
+ifeq ($(OS), UBUNTU)
+	chmod a+x ./bedmoni
+endif
 	sudo cp ./bedmoni $(ROOTFSDIR)/rootfs_nfs/usr/local/bin/ -v
 	sudo cp ./bedmoni $(ROOTFSDIR)/rootfs_ext2/usr/local/bin/ -v
 	sudo cp ./bedmoni_data/*.lang $(ROOTFSDIR)/rootfs_nfs/usr/local/bedmoni_data/ -v

@@ -38,6 +38,7 @@
 #include "sframe.h"
 #include "utils.h"
 #include "gview.h"
+#include "csio.h"
 #include "stconf.h"
 
 #ifdef UNIX
@@ -149,6 +150,13 @@ void debug(char *fmt, ...)
 #else
   yfprintf(stdout, s);
 #endif
+#if 1
+  csio_debug_info_t csio_debug_info;
+  memset(&csio_debug_info, 0, sizeof(csio_debug_info));
+  strncpy((char*)&csio_debug_info.payload, s, strlen(s));
+  csio_debug_info.len = strlen(s);
+  csio_send_msg(CSIO_ID_DEBUG, &csio_debug_info, sizeof(csio_debug_info_t));
+#endif
 #endif
 }
 
@@ -167,6 +175,13 @@ void info(char *fmt, ...)
 #else
   yfprintf(stdout, s);
 #endif
+#if 1
+  csio_debug_info_t csio_debug_info;
+  memset(&csio_debug_info, 0, sizeof(csio_debug_info));
+  strncpy((char*)&csio_debug_info.payload, s, strlen(s));
+  csio_debug_info.len = strlen(s);
+  csio_send_msg(CSIO_ID_DEBUG, &csio_debug_info, sizeof(csio_debug_info_t));
+#endif
 #endif
 }
 
@@ -184,6 +199,13 @@ void error(char *fmt, ...)
   fprintf(stderr, s);
 #else
   yfprintf(stderr, s);
+#endif
+#if 1
+  csio_debug_info_t csio_debug_info;
+  memset(&csio_debug_info, 0, sizeof(csio_debug_info));
+  strncpy((char*)&csio_debug_info.payload, s, strlen(s));
+  csio_debug_info.len = strlen(s);
+  csio_send_msg(CSIO_ID_DEBUG, &csio_debug_info, sizeof(csio_debug_info_t));
 #endif
 #endif
 }

@@ -20,6 +20,7 @@
 static unsigned char csio_outbuf[CSIO_OUTBUF_SIZE];
 static unsigned long orptr = 0;
 static unsigned long owptr = 0;
+static int csio_is_init = 0;
 
 static void csio_flush(void);
 
@@ -34,6 +35,8 @@ void csio_init(void)
 
   orptr = 0;
   owptr = 0;
+
+  csio_is_init = 1;
 }
 
 void csio_deinit(void)
@@ -44,6 +47,8 @@ void csio_deinit(void)
 #if defined (UDP_BEDMONI_CLIENT)
   udp_client_deinit();
 #endif
+
+  csio_is_init = 0;
 }
 
 int csio_read(void * pbuf, int len)
@@ -64,6 +69,7 @@ int csio_send_msg(int msgid, const void * data, int len)
   static unsigned long ts_base = 0;
   outlen = 0;
 
+  if (!csio_is_init) return -1;
   if (!data || len<0) return -1;
 
   msgout[0] = CS_OUT_START;
@@ -86,13 +92,13 @@ int csio_send_msg(int msgid, const void * data, int len)
   memcpy(&msgout[16], data, len);
 
   crc = 0x00;
-  for (i=1; i<16+len+1; i++)
+  for (i=1; i<16+len; i++)
   {
     crc+=msgout[i];
   }
-  msgout[16+len+1] = crc;
-  msgout[16+len+2] = CS_OUT_END;
-  outlen = 16+len+2+1;
+  msgout[16+len] = crc;
+  msgout[16+len+1] = CS_OUT_END;
+  outlen = 16+len+2;
 
   if (owptr+outlen < CSIO_OUTBUF_SIZE)
   {
@@ -117,7 +123,7 @@ int csio_send_msg(int msgid, const void * data, int len)
 
 static void csio_flush(void)
 {
-  const int packet_max_size = 1024;
+  const int packet_max_size = 400; // 500 or higher occurs transmit. errors
   int outlen, nw_total, nw, i;
   unsigned char * pbuf = 0;
 
@@ -147,15 +153,20 @@ static void csio_flush(void)
     }
     else
     {
-      outlen = - orptr + CSIO_OUTBUF_SIZE;
+      outlen = - orptr + CSIO_OUTBUF_SIZE + owptr;
     }
     if (outlen > packet_max_size) outlen = packet_max_size;
+    if (orptr + outlen > CSIO_OUTBUF_SIZE) outlen = CSIO_OUTBUF_SIZE - orptr;
 
 #define NUM_RETRY_ATTEMPTS    5
     for(i=0,nw_total=0;i<NUM_RETRY_ATTEMPTS;i++)
     {
       nw = udp_write(pbuf+nw_total, outlen-nw_total);
-      if (nw >= 0) nw_total += nw;
+      if (nw >= 0)
+      {
+        nw_total += nw;
+        i = 0;
+      }
       if (nw_total == outlen) break;
     }
 
