@@ -11,12 +11,15 @@
 #endif
 #include <stdio.h>
 #include <string.h>
-//#include "networkset.h"
-//#include "bedmoni.h"
+#include <assert.h>
 #include "udp.h"
 
 #ifdef WIN32
 #pragma comment (lib, "ws2_32.lib")
+#endif
+
+#ifdef WIN32
+typedef int socklen_t;
 #endif
 
 static int sockfd = 0;
@@ -47,7 +50,7 @@ int udp_server_init(void)
   sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
   if (sockfd <= 0)
   {
-    error("%s: socket error\n", __FUNCTION__);
+    fprintf(stderr, "%s: socket error\n", "udp_server_init");
     return -1;
   }
 
@@ -64,8 +67,13 @@ int udp_server_init(void)
   serv_addr.sin_port=htons(portno);
   if ( bind(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) != 0 )
   {
-    error("%s: bind error\n", __FUNCTION__);
+    fprintf(stderr, "%s: bind error\n","udp_server_init");
+#ifdef UNIX
     close(sockfd);
+#endif
+#ifdef WIN32
+    closesocket(sockfd);
+#endif
     sockfd = 0;
     return -1;
   }
@@ -157,7 +165,7 @@ void udp_client_deinit(void)
 int udp_write(const void * pbuf, int len)
 {
   if (!si_other_ptr) return -1;
-  return (sendto(sockfd, pbuf, len, 0, (const struct sockaddr *)si_other_ptr, sizeof(struct sockaddr)) );
+  return (sendto(sockfd, (const char *)pbuf, len, 0, (const struct sockaddr *)si_other_ptr, sizeof(struct sockaddr)) );
 }
 
 int udp_read(void * pbuf, int len)
@@ -167,7 +175,7 @@ int udp_read(void * pbuf, int len)
  // return ( recvfrom(sockfd, pbuf, len, 0, (struct sockaddr *)si_other_ptr, (socklen_t *)&si_len) );
   struct sockaddr sock_addr;
   int si_len = sizeof(struct sockaddr);
-  return ( recvfrom(sockfd, pbuf, len, 0, (struct sockaddr *)&sock_addr, (socklen_t *)&si_len) );
+  return ( recvfrom(sockfd, (char*)pbuf, len, 0, (struct sockaddr *)&sock_addr, (socklen_t *)&si_len) );
   // parse sock_addr structure
 }
 

@@ -1,6 +1,12 @@
 #include <assert.h>
+#include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
-#include "../../modules/csio_typedefs.h"
+#ifdef WIN32
+#include <windows.h>
+#endif
+//#include "../../modules/csio_typedefs.h"
+#include "csio_typedefs.h"
 #include "udp.h"
 #include "cs_demo.h"
 
@@ -244,7 +250,12 @@ int main(int argc, char **argv)
 
     if (nr > 0) dio_process_data(buf, nr);
 //    printf("nr=%d\n", nr);
+#ifdef UNIX
     usleep(10*1000);
+#endif
+#ifdef WIN32
+    Sleep(10);
+#endif
   }
 
 #if defined (DATA_FROM_FILE)
