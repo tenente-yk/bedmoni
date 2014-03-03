@@ -1037,8 +1037,8 @@ static void cframe_chandata_update(cframe_t * pcframe)
         int dy = 0;
         if (pcframe->num_visible_views)
           dy = (pcframe->cy-CFRAME_LABEL_DY_OFFS) / (pcframe->num_visible_views);
-        int u_border = pcframe->chanview[chno].y0 - dy / 2;
-        int l_border = pcframe->chanview[chno].y0 + dy / 2;
+        int u_border = pcframe->chanview[j].y0 - dy / 2;
+        int l_border = pcframe->chanview[j].y0 + dy / 2;
         if (chno == CO2)
         {
           u_border = pcframe->chanview[chno].y0 - dy + 20;

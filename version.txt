@@ -23,4 +23,8 @@
 - fix for incorrect ids view on units
 * 01 Feb 2014
 - build project with arm-linux-gcc
+* 01 Mar 2014
+- protocol with central station corrected, cs_demo added in tools
+* 03 Mar 2014
+- fix bug for displaying ECG leads aVR, aVF, aVL, V
 *****************************************************************************************************
