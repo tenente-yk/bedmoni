@@ -24,6 +24,7 @@ enum
   CSIO_ID_MONICFG = 13,   /*!< 13 */
   CSIO_ID_RPEAK = 14,   /*!< 14 */
   CSIO_ID_ECS = 15,   /*!< 15 */
+  CSIO_ID_MAXNUM,
 };
 
 //typedefs

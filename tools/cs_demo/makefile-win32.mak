@@ -18,7 +18,9 @@ ALL : "$(OUTDIR)\$(TARGET).exe"
 CLEAN :
 	-@erase "$(INTDIR)\cs_demo.obj"  \
 	-@erase "$(INTDIR)\udp.obj"     \
-
+	-@erase "$(INTDIR)\dio.obj"     \
+	-@erase "$(INTDIR)\debug.obj"     \
+	-@erase "$(INTDIR)\dproc.obj"     \
 
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
@@ -30,6 +32,9 @@ LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi3
 LINK32_OBJS= \
 	"$(INTDIR)\cs_demo.obj" \
 	"$(INTDIR)\udp.obj" \
+	"$(INTDIR)\dio.obj" \
+	"$(INTDIR)\debug.obj" \
+	"$(INTDIR)\dproc.obj" \
 
 "$(OUTDIR)\$(TARGET).exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -79,3 +84,12 @@ SOURCE=.\cs_demo.c
 
 SOURCE=.\udp.c
 "$(INTDIR)\udp.obj" : $(SOURCE) "$(INTDIR)"
+
+SOURCE=.\dio.c
+"$(INTDIR)\dio.obj" : $(SOURCE) "$(INTDIR)"
+
+SOURCE=.\debug.c
+"$(INTDIR)\debug.obj" : $(SOURCE) "$(INTDIR)"
+
+SOURCE=.\dproc.c
+"$(INTDIR)\dproc.obj" : $(SOURCE) "$(INTDIR)"
