@@ -1,11 +1,17 @@
-#include <windows.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#ifdef WIN32
+#include <windows.h>
+#endif
 #include "debug.h"
 #if defined (QT_CORE_LIB)
 #include <QDebug>
 #undef DEBUG_WINDOW
+#endif
+
+#if defined (UNIX)
+#define _vsnprintf vsnprintf
 #endif
 
 #define DEBUG       1
@@ -165,7 +171,7 @@ void error(char *fmt, ...)
   char s[200];
   va_list  args;
 
-  strcpy(s, "error: ");
+  sprintf(s, "error: ");
   va_start(args, fmt);
   _vsnprintf(s+sizeof("error: ")-1, sizeof(s)-sizeof("error: "), fmt, args);
   va_end( args );

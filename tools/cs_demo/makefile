@@ -10,7 +10,7 @@ LINKFLAGS=
 
 TARGET=cs_demo
 
-OBJ = udp.o
+OBJ = udp.o debug.o dio.o dproc.o
 
 all:	$(TARGET).o $(OBJ)
 	$(CC) $(LINKFLAGS) $(TARGET).o $(OBJ) -o $(TARGET)
@@ -20,6 +20,15 @@ $(TARGET).o:$(TARGET).c
 
 udp.o: udp.c
 	$(CC) $(CCFLAGS) udp.c -c -o udp.o
+
+debug.o: debug.c
+	$(CC) $(CCFLAGS) debug.c -c -o debug.o
+
+dio.o: dio.c
+	$(CC) $(CCFLAGS) dio.c -c -o dio.o
+
+dproc.o: dproc.c
+	$(CC) $(CCFLAGS) dproc.c -c -o dproc.o
 
 clean:
 	\rm -f *.o $(TARGET) *~

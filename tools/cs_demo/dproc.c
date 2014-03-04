@@ -8,6 +8,7 @@ static unsigned char ena[CSIO_ID_MAXNUM];
 
 void dproc_init(void)
 {
+  int i;
   memset(ena, 0, sizeof(ena));
   FILE * f = fopen("cs_demo.ini", "rt");
   if (!f)
@@ -30,7 +31,7 @@ void dproc_init(void)
       chan ++;
     }
   }
-  for (int i=0; i<CSIO_ID_MAXNUM; i++)
+  for (i=0; i<CSIO_ID_MAXNUM; i++)
   {
     debug("channel %d\t%s\n", i, ena[i] ? "ENA" : "DIS");
   }
