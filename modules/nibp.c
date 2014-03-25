@@ -1153,7 +1153,7 @@ static void nibp_calib_stepit(void)
          // uframe_printbox(10, 100, -1, -1, s, UFRAME_STATICTEXT_COLOR);
         }
       }
-      v = (OFF<<0) | (OPEN<<8) | (OPEN<<16);
+      v = (ON<<0) | (OPEN<<8) | (OPEN<<16);
       nibp_control_pneumatics(&v);
       sched_stop(SCHED_NIBP);
       break;
@@ -1251,7 +1251,7 @@ static void nibp_leak_stepit(void)
         uframe_printbox(175, y, -1, -1, "X", RGB(0xff,0x00,0x00));
       }
       nibp_test_status ++; // perform next case: finishing
-      v = (OFF<<0) | (OPEN<<8) | (OPEN<<16);
+      v = (ON<<0) | (OPEN<<8) | (OPEN<<16);
       nibp_control_pneumatics(&v);
       break;
     default:
@@ -1306,7 +1306,7 @@ static void nibp_verif_stepit(void)
       ids2string(IDS_VERIF_FINISHED, s);
       uframe_clearbox(160, 150, 40, 20);
       uframe_printbox(20, 170, -1, -1, s, UFRAME_STATICTEXT_COLOR);
-      v = (OFF<<0) | (OPEN<<8) | (OPEN<<16);
+      v = (ON<<0) | (OPEN<<8) | (OPEN<<16);
       nibp_control_pneumatics(&v);
       sched_stop(SCHED_NIBP);
       break;

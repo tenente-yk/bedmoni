@@ -130,6 +130,6 @@ void menu_leaktst_closeproc(void)
   nibp_service(0);
 
   unsigned int v;
-  v = (OFF<<0) | (OPEN<<8) | (OPEN<<16);
+  v = (ON<<0) | (OPEN<<8) | (OPEN<<16);
   nibp_command(NIBP_CMD_CONTROL_PNEUMATICS, v);
 }
