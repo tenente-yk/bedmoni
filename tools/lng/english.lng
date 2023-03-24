@@ -1,0 +1,14 @@
+#include "ids.h"
+
+IDS_MAINMENU         "\255Main menu"
+IDS_PATIENT          "Pati\86ent\86"
+IDS_ALARMS           "Alarms
+IDS_DOZECALC         "Doze calculator"
+IDS_DISPLAY          "Display"
+IDS_EVENT_LOGS       "Event logs"
+IDS_TRENDS           "Trends"
+IDS_TABLE            "Table"
+IDS_PRINTSET         "Print settings"
+IDS_SETTINGS         "Settings"
+IDS_QUIT             "Quit"
+

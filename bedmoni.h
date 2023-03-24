@@ -13,8 +13,6 @@
  *  \date      2011-2012
  *  \pre       compile with gcc.
  *  \bug       no bugs.
- *  \warning   all rights are reserved
- *  \copyright UOMZ.
  */
 
 // bedmoni
@@ -25,11 +23,14 @@
 #include "ids.h"
 #include "lang.h"
 
+#include "autogen_config.h"
+
 #define HI_VER                1
 #define LO_VER                0
 
 #define STDIO_LOGGING         0
 #define DEBUG                 1
+#define MAKE_FB_NULL          // framebuffer is not presented
 
 #ifdef ARM
 #define USBDISK_DEV           "/dev/sda1"
@@ -40,8 +41,8 @@
 #define USBDISK_PATH          "/mnt/usbdisk/"
 #define USBDISK_BINPATH       "/mnt/usbdisk/bin/"
 #else
-#define USBDISK_PATH          "/home/tenente/my_projects/bedmoni/"
-#define USBDISK_BINPATH       "/home/tenente/my_projects/bedmoni/bin/"
+#define USBDISK_PATH          BEDMONI_DIR
+#define USBDISK_BINPATH       BEDMONI_DIR"/bin/"
 #endif
 #define APP_NAME              "bedmoni"
 #define DATA_DIR              "bedmoni_data"

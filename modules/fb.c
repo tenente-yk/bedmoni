@@ -71,6 +71,9 @@ void fb_close(void)
 
 int fb_get_info(fb_info_t * pi)
 {
+  pi->bpp = 16;
+  pi->xres = 640;
+  pi->yres = 480;
   if (fbfd < 0) return -1;
   assert(pi);
   pi->addr = fb_addr;

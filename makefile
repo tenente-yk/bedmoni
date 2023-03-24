@@ -1,9 +1,8 @@
 include makefile.rules
 
 CC := gcc
-CFLAGS := -O3 -O -Wall
-SFLAGS :=
-LFLAGS :=
+CFLAGS := -O0 -O -Wall -m32
+SFLAGS := -m32
 DEFS := -DUNIX \
 
 PROJDIR = /home/tenente/my_projects/bedmoni
@@ -15,7 +14,7 @@ LANGDIR = lng
 MNDIR = menus/res
 DATADIR=bedmoni_data
 
-LINKFLAGS := -lm -lpthread -Wl,-Map,$(TARGET).map
+LINKFLAGS := -lm -lpthread -Wl,-Map,$(TARGET).map -m32
 POSTFIX_LINKFLAGS :=
 
 ifeq ($(OS), UBUNTU)
@@ -99,7 +98,7 @@ endif
 #	./make_arc.sh
 
 
-build: xmlout menus lang $(TARGET)
+build: autogen xmlout menus lang $(TARGET)
 
 build_arm: xmlout menus lang $(TARGET)
 
@@ -108,6 +107,11 @@ objects += $(patsubst %.c,%.o,$(wildcard modules/*.c))
 objects += $(patsubst %.c,%.o,$(wildcard menus/*.c))
 objects += $(patsubst %.c,%.o,$(wildcard tasks/*.c))
 objects += menulst.o
+
+autogen:
+	printf "#define BEDMONI_DIR \"" > autogen_config.h
+	printf `pwd` >> autogen_config.h
+	printf "\"" >> autogen_config.h
 
 #$(TARGET): $(notdir $(patsubst %.c,%.o,$(wildcard  $(search_wildcard  s)))) menulst.o
 $(TARGET): $(notdir $(objects))

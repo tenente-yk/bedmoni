@@ -267,7 +267,9 @@ int dview_init(void)
   if (fb_open(FB_DEV) < 0)
   {
     error("fb_open failed\n");
+#ifndef MAKE_FB_NULL
     assert(0);
+#endif
   }
   fb_get_info(&fb_info);
 #endif
@@ -400,9 +402,11 @@ void dview_bitblt_fast(int x, int y, int cx, int cy, dc_list_t * pdclist, int x0
         pwo ++;
       }
 
+#ifndef MAKE_FB_NULL
       memcpy(p_dev + (y1+yy)*bypp*xres + x1*bypp,
              line_fast,
              cx*bypp);
+#endif
     }
   }
   else
@@ -429,9 +433,11 @@ void dview_bitblt_fast(int x, int y, int cx, int cy, dc_list_t * pdclist, int x0
         pwo  += bypp;
       }
 
+#ifndef MAKE_FB_NULL
       memcpy(p_dev + (y1+yy)*bypp*xres + x1*bypp,
              line_fast,
              cx*bypp);
+#endif
     }
   }
 
@@ -571,7 +577,9 @@ void dview_draw(void)
   for (i=0; i<upd_view_cnt/*DVIEW_UPD_MAX_SIZE*/; i++)
   {
     if (!upd_view_info[i].valid) break;
+#ifndef MAKE_FB_NULL
     memcpy((unsigned char*)fb_info.addr + upd_view_info[i].y0*bypp*xres +  upd_view_info[i].x0*bypp, pgd_data + upd_view_info[i].y0*bypp*xres +  upd_view_info[i].x0*bypp, upd_view_info[i].cx*bypp);
+#endif
    // upd_view_info[i].valid = 0;
   }
   upd_view_cnt = 0;
